@@ -11,8 +11,8 @@ ENV MYSQL_ROOT_PASSWORD=wPrP80 \
     MYSQL_RUN_DIR=/run/mysqld \
     MYSQL_LOG_DIR=/var/log/mysql
 
-RUN apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server=${MYSQL_VERSION}* \
+RUN apt update \
+ && DEBIAN_FRONTEND=noninteractive apt install -y mysql-server=${MYSQL_VERSION}* \
  && rm -rf ${MYSQL_DATA_DIR} \
  && rm -rf /var/lib/apt/lists/*
 
