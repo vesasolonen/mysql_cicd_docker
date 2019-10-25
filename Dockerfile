@@ -2,6 +2,11 @@ FROM ubuntu:bionic-20190612
 
 # LABEL maintainer="sameer@damagehead.com"
 
+RUN apt update \
+ && DEBIAN_FRONTEND=noninteractive apt install -y mysql-server=${MYSQL_VERSION}* \
+ && rm -rf ${MYSQL_DATA_DIR} \
+ && rm -rf /var/lib/apt/lists/*
+ 
 ENV MYSQL_ROOT_PASSWORD=wPrP80 \
     MYSQL_DATABASE=wordpress \
     MYSQL_USER=admin_user \
@@ -11,10 +16,6 @@ ENV MYSQL_ROOT_PASSWORD=wPrP80 \
     MYSQL_RUN_DIR=/run/mysqld \
     MYSQL_LOG_DIR=/var/log/mysql
 
-RUN apt update \
- && DEBIAN_FRONTEND=noninteractive apt install -y mysql-server=${MYSQL_VERSION}* \
- && rm -rf ${MYSQL_DATA_DIR} \
- && rm -rf /var/lib/apt/lists/*
 
 COPY entrypoint.sh /sbin/entrypoint.sh
 
