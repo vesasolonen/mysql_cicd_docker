@@ -7,12 +7,15 @@ build:
   script:
     - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
     - docker push "$CI_REGISTRY_IMAGE"
+    tags:
+      - dev2ops
+    
   db:
     image: mysql:5.7
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: example
+      MYSQL_ROOT_PASSWORD: wPrP80
       MYSQL_DATABASE: wordpress
       MYSQL_USER: admin_user
       MYSQL_PASSWORD: P#q3dJ/4
